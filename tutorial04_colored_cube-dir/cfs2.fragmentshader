@@ -1,0 +1,25 @@
+
+#version 330 core
+
+// Interpolated values from the vertex shaders
+in vec3 bar_coords;
+
+// Ouput data
+out vec3 color;
+
+uniform int depth;
+
+void main(){
+
+	// Output color = color specified in the vertex shader, 
+	// interpolated between all 3 surrounding vertices
+  if(pow(bar_coords.x - 0.3,2.) + pow(bar_coords.y - 0.3,2.) + pow(bar_coords.z - 0.3, 2.) < 0.1)
+    color = vec3(0.,0.,0.);
+  else
+  {
+    float x = bar_coords.x;
+    float y = bar_coords.y;
+    float z = bar_coords.z;
+    color = vec3(sin(x), x, 0.1);
+  }
+}
