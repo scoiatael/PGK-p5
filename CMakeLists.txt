@@ -42,7 +42,7 @@ add_definitions(
 
 # Tutorial 4
 add_executable(tutorial04_colored_cube
-	tutorial04_colored_cube/tutorial04.cpp
+	tutorial04_colored_cube-dir/tutorial04.cpp
 	common/shader.cpp
 	common/shader.hpp
 )
@@ -50,8 +50,8 @@ target_link_libraries(tutorial04_colored_cube
 	${ALL_LIBS}
 )
 # Xcode and Visual working directories
-set_target_properties(tutorial04_colored_cube PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tutorial04_colored_cube/")
-create_target_launcher(tutorial04_colored_cube WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/tutorial04_colored_cube/")
+set_target_properties(tutorial04_colored_cube PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tutorial04_colored_cube-dir/")
+create_target_launcher(tutorial04_colored_cube WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/tutorial04_colored_cube-dir/")
 
 
 
