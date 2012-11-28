@@ -13,14 +13,16 @@ float dist(vec3 p1, vec3 p2)
 {
   return pow(p1.x-p2.x,2) + pow(p1.y-p2.y,2) + pow(p1.z-p2.z,2);
 }
+
 void main(){
 
 	// Output color = color specified in the vertex shader, 
 	// interpolated between all 3 surrounding vertices
-  float dis100 = dist(bar_coords, vec3(1.,0.,0.),
-    dis010 = dist(bar_coords, vec3(0.,1.,0.),
-    dis001 = dist(bar_coords, vec3(0.,0.,1.);
-  color = vec3((sin(dis100) + sin(dis010) + sin(dis001)), 0.2,0.2);
+  float dis100 = 10*pow(depth,2)*dist(bar_coords, vec3(1.,0.,0.));
+  float dis010 = 10*pow(depth,2)*dist(bar_coords, vec3(0.,1.,0.));
+  float dis001 = 10*pow(depth,2)*dist(bar_coords, vec3(0.,0.,1.));
+  float t = ( sin(dis100) + sin(dis010) + sin(dis001)/3.0f);
+  color = vec3(t,cos(t),sin(t));
   /*
   if(dis < 0.1)
     color = vec3(0.,0.,0.);
