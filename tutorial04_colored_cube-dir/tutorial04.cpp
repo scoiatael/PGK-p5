@@ -164,22 +164,20 @@ int main( void )
       frames+=1;
       time = (float)my_clock_class::get_time()/10000.0f;
       cl.update();
-      if(cl.get_lock(keytimeoutID)<=0)
+      if( glfwGetKey(GLFW_KEY_UP) == GLFW_PRESS 
+          && cl.get_lock(keytimeoutID) <= 0)
       {
-        if( glfwGetKey(GLFW_KEY_UP) == GLFW_PRESS)
-        {
-          depth+=1;
-          cl.reset_lock(keytimeoutID);
-        }
-        else
-        {
-          if(glfwGetKey(GLFW_KEY_DOWN) == GLFW_PRESS)
-          {
-            depth-=1;
-            cl.reset_lock(keytimeoutID);
-          }
-        }
+        depth+=1;
+        cl.reset_lock(keytimeoutID);
       }
+      
+      if(glfwGetKey(GLFW_KEY_DOWN) == GLFW_PRESS 
+          && cl.get_lock(keytimeoutID) <= 0)
+      {
+        depth-=1;
+        cl.reset_lock(keytimeoutID);
+      }
+      
       if(cl.get_lock(FPSshowLockID) <= 0)
       {
         cl.reset_lock(FPSshowLockID);
