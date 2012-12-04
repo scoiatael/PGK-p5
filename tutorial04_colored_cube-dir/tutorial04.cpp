@@ -186,11 +186,13 @@ int main( void )
       }
             // Clear the screen
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	GLfloat scale = sin(time/100)+1;
       for(int i=0; i<2;i++)
       {
         glUseProgram(pIDTable[i]);
+	
 
-        glm::mat4 temp = MVP * glm::rotate(glm::mat4(1.0), time, glm::vec3(0.,1.,0.)) *glm::translate(glm::mat4(1.0), glm::vec3((2*i-1),0,0)) *glm::rotate(glm::mat4(1.0), i*180.0f,glm::vec3(1.,0.,0.));
+        glm::mat4 temp = MVP * glm::rotate(glm::mat4(1.0), time, glm::vec3(0.,1.,0.)) *glm::translate(glm::mat4(1.0), glm::vec3((2*i-1),0,0)) *glm::rotate(glm::mat4(1.0), i*180.0f,glm::vec3(1.,0.,0.)) * glm::scale(glm::mat4(1.0), glm::vec3(scale));
         glUniformMatrix4fv(MatrixIDTable[i], 1, GL_FALSE, &temp[0][0]);
         glUniform1i(DepthIDTable[i], depth);
 
