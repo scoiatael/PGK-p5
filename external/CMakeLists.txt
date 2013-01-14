@@ -49,7 +49,7 @@ set(GLFW_SOURCE	${GLFW_SOURCE}
 	glfw-2.7.6/lib/x11/x11_window.c
 )
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-set(GLFW_SOURCE	${GLFW_SOURCE}
+set(GLFW_OBJC_SOURCE
 	glfw-2.7.6/lib/cocoa/cocoa_enable.m 
 	glfw-2.7.6/lib/cocoa/cocoa_fullscreen.m 
 	glfw-2.7.6/lib/cocoa/cocoa_glext.m 
@@ -59,6 +59,12 @@ set(GLFW_SOURCE	${GLFW_SOURCE}
 	glfw-2.7.6/lib/cocoa/cocoa_time.m 
 	glfw-2.7.6/lib/cocoa/cocoa_window.m 
 )
+set(GLFW_SOURCE	${GLFW_SOURCE} ${GLFW_OBJC_SOURCE})
+
+set_source_files_properties(${GLFW_SOURCE} 
+	PROPERTIES COMPILE_FLAGS "-x objective-c") #-fobjc-exceptions
+
+
 #add_definitions(-D_MACOSX)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
@@ -72,7 +78,7 @@ include_directories(
 	glfw-2.7.6/lib/win32/
 	glfw-2.7.6/lib/
 	glfw-2.7.6/include/
-	glew-1.5.8/include/
+	glew-1.9.0/include/
 )
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 set(GLFW_HEADERS
@@ -83,7 +89,7 @@ include_directories(
 	glfw-2.7.6/lib/x11/
 	glfw-2.7.6/lib/
 	glfw-2.7.6/include/
-	glew-1.5.8/include/
+	glew-1.9.0/include/
 )
 set(OPENGL_LIBRARY
 	${OPENGL_LIBRARY}
@@ -106,7 +112,7 @@ include_directories(
 	glfw-2.7.6/lib/cocoa/
 	glfw-2.7.6/lib/
 	glfw-2.7.6/include/
-	glew-1.5.8/include/
+	glew-1.9.0/include/
 )
 SET(EXTRA_LIBS "-framework Cocoa -framework OpenGL -framework IOKit -framework Foundation -framework AppKit")
 add_definitions(-D_MACOSX -ObjC++)
@@ -125,19 +131,19 @@ target_link_libraries(GLFW_276
 ### GLEW ###
 
 set(GLEW_SOURCE
-	glew-1.5.8/src/glew.c
+	glew-1.9.0/src/glew.c
 )
 
 set(GLEW_HEADERS
 )
 
 
-add_library( GLEW_158 STATIC
+add_library( GLEW_190 STATIC
 	${GLEW_SOURCE}
 	${GLEW_INCLUDE}
 )
 
-target_link_libraries(GLEW_158
+target_link_libraries(GLEW_190
 	${OPENGL_LIBRARY}
 	${EXTRA_LIBS}
 )
@@ -186,7 +192,17 @@ set(ANTTWEAKBAR_SOURCE
 include_directories(
 	${CMAKE_SOURCE_DIR}/external/AntTweakBar-1.15/src/
 )
-else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") # Windows/Linux : Just add files
+add_definitions(
+	-D_MACOSX
+)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+add_definitions(
+	-D_UNIX
+)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+add_definitions(
+	-D_WINDOWS
+)
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 

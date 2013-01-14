@@ -19,15 +19,15 @@ include(MSVCMultipleProcessCompile) # /MP
 include_directories(
 	external/AntTweakBar-1.15/include/
 	external/glfw-2.7.6/include/
-	external/glm-0.9.1/
-	external/glew-1.5.8/include/
+	external/glm-0.9.4.0/
+	external/glew-1.9.0/include/
 	.
 )
 
 set(ALL_LIBS
 	${OPENGL_LIBRARY}
 	GLFW_276
-	GLEW_158
+	GLEW_190
 	ANTTWEAKBAR_151_OGLCORE_GLFW
 )
 

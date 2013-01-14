@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xubuntu/luki/Documents/PGK/p5/PGK-p5/external/AntTweakBar-1.15/src/MiniGLFW.h
+
+/home/xubuntu/luki/Documents/PGK/p5/PGK-p5/external/AntTweakBar-1.15/src/TwEventGLFW.c
+MiniGLFW.h
+/home/xubuntu/luki/Documents/PGK/p5/PGK-p5/external/AntTweakBar-1.15/src/MiniGLFW.h
+AntTweakBar.h
+-
+
+external/AntTweakBar-1.15/include/AntTweakBar.h
+stddef.h
+-
+string
+-
+string
+-
+

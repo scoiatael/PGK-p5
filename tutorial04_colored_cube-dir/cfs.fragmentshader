@@ -1,10 +1,9 @@
 #version 330 core
 
 // Interpolated values from the vertex shaders
-in vec3 bar_coords;
+varying vec3 bar_coords;
 
 // Ouput data
-out vec3 color;
 
 uniform int depth;
 
@@ -38,8 +37,8 @@ void main(){
     break;
   }
   if(black)
-    color = vec3(0.,0.,0.);
+    gl_FragColor = vec3(0.,0.,0.);
   else
-    color = bar_coords;
+    gl_FragColor = bar_coords;
 
 }
